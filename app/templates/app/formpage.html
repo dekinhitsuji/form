@@ -7,11 +7,11 @@
 
   <body>
     <h1>コンタクトフォーム</h1>
-    <p>{{ Message }}</p>
+    <!-- <p>{{ Message }}</p> -->
 
     <!-- フォームを定義 -->
     <form action="{% url 'formpage' %}" method="POST">
-    {{ form.as_p }}
+      {{ form.as_p }}
     {% csrf_token %}
     <input type="submit" value="送信">
     </form>
