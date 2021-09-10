@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="ja" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Contact Form</title>
-  </head>
+{% extends "app/base.html" %}
 
-  <body>
-    <h1>コンタクトフォーム</h1>
-    <!-- <p>{{ Message }}</p> -->
+{% block head %}
+<a class="navbar-brand" href="/">メンバー登録フォーム</a>
 
-    <!-- フォームを定義 -->
-    <form action="{% url 'formpage' %}" method="POST">
-      {{ form.as_p }}
-    {% csrf_token %}
-    <input type="submit" value="送信">
-    </form>
+{% endblock %}
 
-  </body>
-</html>
+{% block main %}
+
+<form method="POST" novalidate>
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="field">
+    <p>
+      <label>{{ field.label_tag }}</label>
+      {{ field }}
+    </p>
+
+  </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-info">送信</button>
+</form>
+<p>{{ message }}</p>
+
+{% endblock %}
